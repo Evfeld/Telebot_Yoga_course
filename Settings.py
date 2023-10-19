@@ -4,5 +4,5 @@
 # In[ ]:
 
 
-TG_TOKEN = '6266115013:AAHRX2ZlDx4jkZzJhbJAV1VQvopX7nH7lU'
+TG_TOKEN = ''
 
