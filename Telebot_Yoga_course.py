@@ -15,9 +15,9 @@ import dataframe_image as dfi
 from datetime import date, timedelta
 from bob_telegram_tools.bot import TelegramBot
 from telebot.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
+import settings
 
-token=''
-bot = telebot.TeleBot(token)
+bot = telebot.TeleBot(telebot.TeleBot(settings.TG_TOKEN))
 today = date.today()
 if today.strftime('%Y-%m-%d') == '2023-10-18':
     lesson = '<b>УРОК 1. ЗЕМЛЯ</b> \n'             'Остановка: Земля \n\n'             'Йога  и медитация подводят нас к настоящему моменту, единственному месту, где существует жизнь. На сегодняшний день в просторах нашей галактики известно о жизни только на одной планете — планете Земля. \n\n'             'С Земли, и с практики Намерения, мы и начнём наше увлекательное путешествие по уголкам внутренней вселенной.\n\n'             '<a href="https://youtu.be/3HlhKcWDUNA?feature=shared">Ссылка на урок</a>\n\n'             '#lesson1'
