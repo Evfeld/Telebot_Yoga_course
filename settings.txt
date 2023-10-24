@@ -3,3 +3,4 @@ pyTelegramBotAPI
 schedule
 thread6
 pandas
+bob-telegram-tools
