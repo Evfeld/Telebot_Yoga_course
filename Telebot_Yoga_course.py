@@ -194,7 +194,7 @@ def callback_query(call):
 
 def schedule_checker():
     schedule.every().day.at("12:37").do(function_to_run, lesson = lesson)
-    schedule.every(10).minutes.do(dont_sleep)
+    schedule.every(1).minutes.do(dont_sleep)
     while True:
         schedule.run_pending()
         sleep(1)
