@@ -1,3 +1,4 @@
 requests
 pyTelegramBotAPI
-apscheduler
+schedule
+threading
