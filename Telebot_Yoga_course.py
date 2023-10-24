@@ -214,11 +214,11 @@ def function_to_run(lesson):
 def dont_sleep():
     print(f"I'm not sleeping")
 
-if __name__ == '__main__':
-    t1 = Thread(target=schedule_checker, daemon=True)
-    t2 = Thread(target=start)
-    t1.start()
-    t2.start()
+# if __name__ == '__main__':
+t1 = Thread(target=schedule_checker, daemon=True)
+t2 = Thread(target=start)
+t1.start()
+t2.start()
 
 bot.infinity_polling(timeout=10, long_polling_timeout = 5)
 
