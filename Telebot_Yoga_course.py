@@ -1,21 +1,15 @@
-# from multiprocessing import Process
-# from apscheduler.schedulers.blocking import BlockingScheduler
 import schedule
 import threading
 from threading import Thread
 import time
 from time import sleep
-import json
 import telebot
-import numpy as np
 import pandas as pd
 from telebot import types
 import datetime
-import dataframe_image as dfi
 from datetime import date, timedelta
 from bob_telegram_tools.bot import TelegramBot
 from telebot.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
-# import settings
 import os
 
 bot = telebot.TeleBot(os.environ['TG_TOKEN'])
@@ -224,10 +218,11 @@ def function_to_run(lesson):
         time.sleep(2)
     t1.should_abort_immediately = True
 
-t1 = Thread(target=schedule_checker, daemon=True)
-t2 = Thread(target=start)
-t1.start()
-t2.start()
+if __name__ == '__main__':
+    t1 = Thread(target=schedule_checker, daemon=True)
+    t2 = Thread(target=start)
+    t1.start()
+    t2.start()
 
 bot.infinity_polling(timeout=10, long_polling_timeout = 5)
 
