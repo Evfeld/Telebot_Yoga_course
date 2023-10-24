@@ -211,10 +211,8 @@ def function_to_run(lesson):
         time.sleep(2)
     t1.should_abort_immediately = True
 
-n = 0
 def dont_sleep():
-    n += 1
-    print(f"{n}. I'm not sleeping")
+    print(f"I'm not sleeping")
 
 if __name__ == '__main__':
     t1 = Thread(target=schedule_checker, daemon=True)
