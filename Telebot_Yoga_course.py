@@ -137,7 +137,7 @@ def start(message):
     'Я очень рада приветствовать вас на этом курсе! На курсе, с помощью которого вы получите ключики к управлению своим состоянием через познание себя с помощью древних практик йоги.\n\n' \
     'Скоро откроется первое занятие, а пока для вас есть послание!'
     bot.send_message(message.chat.id, text=text.format(message.from_user), reply_markup=markup)  
-    audio = open(r"C:\Users\Евгений\Desktop\Telebot\Calm_music - Zeon.mp3", 'rb')
+    audio = open(r"Music.mp3", 'rb')
     bot.send_audio(message.chat.id, audio, title = 'Послание', reply_markup=markup1)
     audio.close()
 
@@ -151,7 +151,7 @@ def func(message):
         with open("chat_id.txt", "a") as file:
             for id in lst1:
                 file.write(str(id) +'\n')
-        sc = pd.read_excel(r'C:\Users\Евгений\Desktop\Telebot\Расписание.xlsx')
+        sc = pd.read_excel(r'Schedule.xlsx')
         sc['Date'] = sc['Дата'].fillna(value=pd.to_datetime(today).date())
         sc['d'] = pd.to_datetime(sc['Date']).dt.strftime('%d')
         sc['m'] = pd.to_datetime(sc['Date']).dt.strftime('%m').astype('int64')
@@ -187,7 +187,7 @@ def func(message):
         '5. <b>Все вопросы можно задавать <a href="https://t.me/NataliLarina8">лично</a> или <a href="https://t.me/+oSpisjZHdR8yNzI6">в общем чате.</a></b> \n' \
         '6. <b>Также я дарю тебе трекер, в котором ты сможешь отмечать свои успехи.</b> 21 день - не так много, чтобы не слиться, но вполне достаточно, чтобы заложить кирпичик к большим изменениям❤️'
         bot.send_message(message.from_user.id, send, parse_mode="html")
-        treker = open(r"C:\Users\Евгений\Desktop\Telebot\Бежевый_Трекер_Привычек_Золотая_Рамка_Инстаграм_Пост-compressed.pdf","rb")
+        treker = open(r"Tracker.pdf","rb")
         bot.send_document(message.chat.id, document = treker, visible_file_name = 'Трекер.pdf')
         
 @bot.callback_query_handler(func=lambda call:True)
@@ -206,7 +206,6 @@ def schedule_checker():
         sleep(1)
 
 def function_to_run(lesson):
-#     photo_lesson = open(r"C:\Users\Евгений\Desktop\Telebot\lesson2.png", 'rb')
     fp = open('chat_id.txt','r')
     df = pd.DataFrame(fp,columns = ['chat_id'])
     df = df.drop_duplicates()
