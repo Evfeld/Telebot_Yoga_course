@@ -2,3 +2,4 @@ requests
 pyTelegramBotAPI
 schedule
 thread6
+pandas
