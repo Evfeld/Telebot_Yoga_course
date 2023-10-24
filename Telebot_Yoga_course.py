@@ -141,21 +141,24 @@ def func(message):
         with open("chat_id.txt", "a") as file:
             for id in lst1:
                 file.write(str(id) +'\n')
-        sc = pd.read_excel(r'Schedule.xlsx')
-        sc['Date'] = sc['Дата'].fillna(value=pd.to_datetime(today).date())
-        sc['d'] = pd.to_datetime(sc['Date']).dt.strftime('%d')
-        sc['m'] = pd.to_datetime(sc['Date']).dt.strftime('%m').astype('int64')
-        data = {'Month_num': [1,2,3,4,5,6,7,8,9,10,11,12], 'Month_name': ['января','февраля','марта','апреля','мая','июня','ибля','августа','сентября','октября','ноября','декабря']} 
-        dt = pd.DataFrame(data)
-        sc = sc.merge(dt, left_on = 'm', right_on = 'Month_num', how = 'left')
-        sc['date_text'] = sc['d'] + ' ' + sc['Month_name']
-        sc = sc[['Урок','Дата','Описание','Ссылка','Date','date_text']]
+        with open('Schedule.json') as json_file:
+            data = json.load(json_file, encoding='utf-8')
+            sc = pd.read_json(data, orient='values')
+            sc = pd.DataFrame(eval(json_str))
+            sc['Дата'] = pd.to_datetime(df['Дата']).dt.date
+            sc['d'] = pd.to_datetime(sc['Дата']).dt.strftime('%d')
+            sc['m'] = pd.to_datetime(sc['Дата']).dt.strftime('%m').astype('int64')
+            date = pd.DataFrame({'Month_num': [1,2,3,4,5,6,7,8,9,10,11,12], 
+                                 'Month_name': ['января','февраля','марта','апреля','мая','июня','ибля','августа','сентября','октября','ноября','декабря']})
+            sc = sc.merge(dt, left_on = 'm', right_on = 'Month_num', how = 'left')
+            sc['date_text'] = sc['d'] + ' ' + sc['Month_name']
+            sc = sc[['Урок','Дата','Описание','Ссылка','date_text']]
         lst = []
         for _,row in sc.iterrows():
             if row['Урок'] == 'Шавасана':
                 schedule = f"&#128301; <b>{row['Урок']}</b>"'\n' + f"&#128467; {row['Описание']}" + '\n' + f"{row['Ссылка']}" + '\n' + '_____________'
                 lst.append(schedule)
-            elif row['Урок'] != 'Шавасана' and row['Date'] <= today:
+            elif row['Урок'] != 'Шавасана' and row['Дата'] <= today:
                 schedule = f"&#128301; <b>{row['Урок']}</b>" + '\n' + f"&#128467; {row['date_text']}" + '\n' + f"{row['Описание']}" + '\n' + f"{row['Ссылка']}" + '\n' + '_____________'
                 lst.append(schedule)
             else:
