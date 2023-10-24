@@ -1,5 +1,4 @@
 requests
 pyTelegramBotAPI
 schedule
-thread
 threading
