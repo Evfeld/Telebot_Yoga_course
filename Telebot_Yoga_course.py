@@ -2,6 +2,7 @@ import schedule
 import threading
 from threading import Thread
 import time
+import json
 from time import sleep
 import telebot
 import pandas as pd
@@ -144,13 +145,12 @@ def func(message):
         with open('Schedule.json') as json_file:
             data = json.load(json_file, encoding='utf-8')
             sc = pd.read_json(data, orient='values')
-            sc = pd.DataFrame(eval(json_str))
-            sc['Дата'] = pd.to_datetime(df['Дата']).dt.date
+            sc['Дата'] = pd.to_datetime(sc['Дата']).dt.date
             sc['d'] = pd.to_datetime(sc['Дата']).dt.strftime('%d')
             sc['m'] = pd.to_datetime(sc['Дата']).dt.strftime('%m').astype('int64')
             date = pd.DataFrame({'Month_num': [1,2,3,4,5,6,7,8,9,10,11,12], 
                                  'Month_name': ['января','февраля','марта','апреля','мая','июня','ибля','августа','сентября','октября','ноября','декабря']})
-            sc = sc.merge(dt, left_on = 'm', right_on = 'Month_num', how = 'left')
+            sc = sc.merge(date, left_on = 'm', right_on = 'Month_num', how = 'left')
             sc['date_text'] = sc['d'] + ' ' + sc['Month_name']
             sc = sc[['Урок','Дата','Описание','Ссылка','date_text']]
         lst = []
