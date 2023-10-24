@@ -4,4 +4,3 @@ schedule
 thread6
 pandas
 bob-telegram-tools
-json
