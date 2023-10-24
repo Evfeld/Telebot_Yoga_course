@@ -1,5 +1,5 @@
-from multiprocessing import Process
-from apscheduler.schedulers.blocking import BlockingScheduler
+# from multiprocessing import Process
+# from apscheduler.schedulers.blocking import BlockingScheduler
 import schedule
 import threading
 from threading import Thread
@@ -15,7 +15,7 @@ import dataframe_image as dfi
 from datetime import date, timedelta
 from bob_telegram_tools.bot import TelegramBot
 from telebot.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
-import settings
+# import settings
 import os
 
 bot = telebot.TeleBot(os.environ['TG_TOKEN'])
